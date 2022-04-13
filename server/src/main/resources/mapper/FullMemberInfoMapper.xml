@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.enaium.server.mapper.FullMemberInfoMapper">
+    <select id="selectByPrimaryKey" resultType="cn.enaium.server.model.vo.FullMemberInfo">
+        select i.*, r.name as `role`, p.level
+        from member_info i,
+             member_permission p
+                 left join member_role r on p.role = r.id
+        where i.id = #{id,jdbcType=BIGINT}
+    </select>
+</mapper>

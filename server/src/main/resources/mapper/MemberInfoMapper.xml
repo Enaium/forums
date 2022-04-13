@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.enaium.server.mapper.MemberInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.enaium.server.model.entity.MemberInfo">
+    <!--@mbg.generated-->
+    <!--@Table member_info-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, avatar, description, birthday, gender, nickname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from member_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from member_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.enaium.server.model.entity.MemberInfo">
+    <!--@mbg.generated-->
+    insert into member_info (id, avatar, description, 
+      birthday, gender, nickname
+      )
+    values (#{id,jdbcType=BIGINT}, #{avatar,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{gender,jdbcType=CHAR}, #{nickname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.enaium.server.model.entity.MemberInfo">
+    <!--@mbg.generated-->
+    insert into member_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.enaium.server.model.entity.MemberInfo">
+    <!--@mbg.generated-->
+    update member_info
+    <set>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.enaium.server.model.entity.MemberInfo">
+    <!--@mbg.generated-->
+    update member_info
+    set avatar = #{avatar,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      gender = #{gender,jdbcType=CHAR},
+      nickname = #{nickname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

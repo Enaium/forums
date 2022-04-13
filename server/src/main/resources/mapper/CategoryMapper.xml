@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.enaium.server.mapper.CategoryMapper">
+    <resultMap id="BaseResultMap" type="cn.enaium.server.model.entity.Category">
+        <!--@mbg.generated -->
+        <!--@Table category -->
+        <!-- generated on Wed Mar 30 19:40:25 CST 2022 -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated -->
+        id, title, description
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated -->
+        select
+        <include refid="Base_Column_List"/>
+        from category
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultType="cn.enaium.server.model.entity.Category">
+        select *
+        from category
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated -->
+        delete from category
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.enaium.server.model.entity.Category"
+            useGeneratedKeys="true">
+        <!--@mbg.generated -->
+        insert into category (title, description)
+        values (#{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.enaium.server.model.entity.Category"
+            useGeneratedKeys="true">
+        <!--@mbg.generated -->
+        insert into category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                title,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.enaium.server.model.entity.Category">
+        <!--@mbg.generated -->
+        update category
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.enaium.server.model.entity.Category">
+        <!--@mbg.generated -->
+        update category
+        set title = #{title,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

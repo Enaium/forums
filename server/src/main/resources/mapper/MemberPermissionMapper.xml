@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.enaium.server.mapper.MemberPermissionMapper">
+  <resultMap id="BaseResultMap" type="cn.enaium.server.model.entity.MemberPermission">
+    <!--@mbg.generated -->
+    <!--@Table member_permission -->
+    <!-- generated on Sat Apr 09 09:21:44 CST 2022 -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+    <result column="role" jdbcType="TINYINT" property="role" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated -->
+    id, `level`, `role`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated -->
+    select 
+    <include refid="Base_Column_List" />
+    from member_permission
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated -->
+    delete from member_permission
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.enaium.server.model.entity.MemberPermission" useGeneratedKeys="true">
+    <!--@mbg.generated -->
+    insert into member_permission (`level`, `role`)
+    values (#{level,jdbcType=TINYINT}, #{role,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.enaium.server.model.entity.MemberPermission" useGeneratedKeys="true">
+    <!--@mbg.generated -->
+    insert into member_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="level != null">
+        `level`,
+      </if>
+      <if test="role != null">
+        `role`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.enaium.server.model.entity.MemberPermission">
+    <!--@mbg.generated -->
+    update member_permission
+    <set>
+      <if test="level != null">
+        `level` = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="role != null">
+        `role` = #{role,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.enaium.server.model.entity.MemberPermission">
+    <!--@mbg.generated -->
+    update member_permission
+    set `level` = #{level,jdbcType=TINYINT},
+      `role` = #{role,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

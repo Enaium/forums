@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.enaium.server.mapper.PostCommentMapper">
+    <resultMap id="BaseResultMap" type="cn.enaium.server.model.entity.PostComment">
+        <!--@mbg.generated -->
+        <!--@Table post_comment -->
+        <!-- generated on Sun Apr 10 11:02:07 CST 2022 -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="post_id" jdbcType="BIGINT" property="postId"/>
+        <result column="member_id" jdbcType="BIGINT" property="memberId"/>
+        <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime"/>
+        <result column="edited" jdbcType="BOOLEAN" property="edited"/>
+        <result column="deleted" jdbcType="BOOLEAN" property="deleted"/>
+        <result column="comment" jdbcType="VARCHAR" property="comment"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated -->
+        id, post_id, member_id, comment_time, edited, deleted, `comment`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated -->
+        select
+        <include refid="Base_Column_List"/>
+        from post_comment
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="getByCommentTime" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from post_comment where post_id=#{id,jdbcType=BIGINT} order by comment_time desc limit #{start},#{end}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated -->
+        delete from post_comment
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.enaium.server.model.entity.PostComment"
+            useGeneratedKeys="true">
+        <!--@mbg.generated -->
+        insert into post_comment (post_id, member_id, comment_time,
+        edited, deleted, `comment`
+        )
+        values (#{postId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{commentTime,jdbcType=TIMESTAMP},
+        #{edited,jdbcType=BOOLEAN}, #{deleted,jdbcType=BOOLEAN}, #{comment,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="cn.enaium.server.model.entity.PostComment" useGeneratedKeys="true">
+        <!--@mbg.generated -->
+        insert into post_comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="postId != null">
+                post_id,
+            </if>
+            <if test="memberId != null">
+                member_id,
+            </if>
+            <if test="commentTime != null">
+                comment_time,
+            </if>
+            <if test="edited != null">
+                edited,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="comment != null">
+                `comment`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="postId != null">
+                #{postId,jdbcType=BIGINT},
+            </if>
+            <if test="memberId != null">
+                #{memberId,jdbcType=BIGINT},
+            </if>
+            <if test="commentTime != null">
+                #{commentTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="edited != null">
+                #{edited,jdbcType=BOOLEAN},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="comment != null">
+                #{comment,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.enaium.server.model.entity.PostComment">
+        <!--@mbg.generated -->
+        update post_comment
+        <set>
+            <if test="postId != null">
+                post_id = #{postId,jdbcType=BIGINT},
+            </if>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=BIGINT},
+            </if>
+            <if test="commentTime != null">
+                comment_time = #{commentTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="edited != null">
+                edited = #{edited,jdbcType=BOOLEAN},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="comment != null">
+                `comment` = #{comment,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.enaium.server.model.entity.PostComment">
+        <!--@mbg.generated -->
+        update post_comment
+        set post_id = #{postId,jdbcType=BIGINT},
+        member_id = #{memberId,jdbcType=BIGINT},
+        comment_time = #{commentTime,jdbcType=TIMESTAMP},
+        edited = #{edited,jdbcType=BOOLEAN},
+        deleted = #{deleted,jdbcType=BOOLEAN},
+        `comment` = #{comment,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
